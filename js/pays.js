@@ -6,10 +6,11 @@
 
     boutons_pays.forEach(elm => {
         elm.addEventListener("click", function (e) {
-            let pays = e.target.id.split('_')[1]; // Extract the category ID from the button ID
-            console.log("Selected category:", pays);
+            let pays = e.target.id; // Extract the country name from the button ID
+            console.log("Pays sélectionné: ", pays);
 
-            let url = `https://gftnth00.mywhc.ca/tim35/wp-json/wp/v2/posts?categories=${pays}`;
+            // URL de l'API REST avec le paramètre de recherche pour le pays
+            let url = `https://gftnth00.mywhc.ca/tim35/wp-json/wp/v2/posts?search=${pays}`;
 
             // Effectuer la requête HTTP en utilisant fetch()
             fetch(url)
@@ -34,21 +35,26 @@
                     data.forEach(function (article) {
                         let titre = article.title.rendered;
                         let contenu = article.content.rendered;
-						let lien = article.link;
-                        let categories = article.categories;
-                        let image = article.better_featured_image.source_url;
+                        let lien = article.link;
+
+                        let imageURL = article.featured_image_url;
+                        if(article.featured_image_url == null){
+                            imageURL = "https://via.placeholder.com/150";
+                        }else{
+                            imageURL = article.better_featured_image.source_url;
+                        }
 
                         contenu = contenu.split('\.', 1)[0];
 
                         let carte = document.createElement("div");
                         carte.classList.add("restapi__carte");
-                    
+
                         carte.innerHTML = `
-                            <img src="${image}" alt="${titre}">
+                            <img src="${imageURL}" alt="${titre}">
                             <div class="info_destination">
                                 <h2>${titre}</h2>
                                 <p>${contenu}</p>
-                                <p><a href= "${lien}">Voir la suite</a></p>
+                                <p><a href="${lien}">Voir la suite</a></p>
                             </div>
                         `;
                         restapi.appendChild(carte);

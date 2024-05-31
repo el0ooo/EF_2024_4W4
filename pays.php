@@ -19,7 +19,7 @@ wp_enqueue_style(   'EC_plugin_pays_css',
                      $version_css);
 
 wp_enqueue_script(  'EC_plugin_voyage_js',
-                    plugin_dir_url(__FILE__) ."js/voyage.js",
+                    plugin_dir_url(__FILE__) ."js/pays.js",
                     array(),
                     $version_js,
                     true);
@@ -28,7 +28,7 @@ add_action('wp_enqueue_scripts', 'ec_pays_enqueue');
 
 // cration des destionations associées à un pays
 function creation_destinations(){
-    $contenu = '<div class="contenu__restapi__pays">
+    $contenu = '<div class="boutton__restapi__pays">
         <button class="cat_pays" id="France">France</button>
         <button class="cat_pays" id="États-Unis">États-Unis</button>
         <button class="cat_pays" id="Canada">Canada</button>
@@ -43,8 +43,10 @@ function creation_destinations(){
         <button class="cat_pays" id="Chine">Chine</button>
         <button class="cat_pays" id="Grèce">Grèce</button>
         <button class="cat_pays" id="Suisse">Suisse</button>
-    </div>';
+        </div>
+
+        <div class="contenu__restapi__pays"></div>';
+    return $contenu;
 }
 
 add_shortcode('EC_pays', 'creation_destinations');
-?>
