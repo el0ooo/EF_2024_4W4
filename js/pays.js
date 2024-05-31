@@ -39,12 +39,8 @@
                         let contenu = article.content.rendered;
                         let lien = article.link;
                         
-                         // Accéder au lien de l'image mise en avant
-                         let imageURL = article._embedded["wp:featuredmedia"][0].source_url;
-                         if (!imageURL) {
-                             imageURL = "https://via.placeholder.com/150";
-                         }
-                         
+                        let imageURL = article._embedded["wp:featuredmedia"] ? article._embedded["wp:featuredmedia"][0].source_url : "https://via.placeholder.com/150";
+
                         contenu = contenu.split('\.', 1)[0];
 
                         let carte = document.createElement("div");
