@@ -10,7 +10,7 @@
             console.log("Pays sélectionné: ", pays);
 
             // URL de l'API REST avec le paramètre de recherche pour le pays
-            let url = `https://gftnth00.mywhc.ca/tim35/wp-json/wp/v2/posts?search=${pays}`;
+            let url = `https://gftnth00.mywhc.ca/tim35/wp-json/wp/v2/posts?search=${pays}&_embed=true`;
 
             // Effectuer la requête HTTP en utilisant fetch()
             fetch(url)
@@ -27,7 +27,7 @@
                 })
                 .then(function (data) {
                     restapi.innerHTML = ""; // Clear previous content
-                    if (pays === "États-Unis" && data.length > 0) {
+                     if (pays === "États-Unis" && data.length > 0) {
                         data.splice(0, 1);
                     }
                     // La variable "data" contient la réponse JSON
@@ -38,14 +38,13 @@
                         let titre = article.title.rendered;
                         let contenu = article.content.rendered;
                         let lien = article.link;
-
-                        let imageURL = article.featured_image_url;
-                        if(article.featured_image_url == null){
-                            imageURL = "https://via.placeholder.com/150";
-                        }else{
-                            imageURL = article.featured_image_url;
-                        }
-
+                        
+                         // Accéder au lien de l'image mise en avant
+                         let imageURL = article._embedded["wp:featuredmedia"][0].source_url;
+                         if (!imageURL) {
+                             imageURL = "https://via.placeholder.com/150";
+                         }
+                         
                         contenu = contenu.split('\.', 1)[0];
 
                         let carte = document.createElement("div");
