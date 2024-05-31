@@ -26,10 +26,12 @@
                     return response.json();
                 })
                 .then(function (data) {
+                    restapi.innerHTML = ""; // Clear previous content
+                    if (pays === "États-Unis" && data.length > 0) {
+                        data.splice(0, 1);
+                    }
                     // La variable "data" contient la réponse JSON
                     console.log(data);
-                    restapi.innerHTML = ""; // Clear previous content
-
                     // Maintenant, vous pouvez traiter les données comme vous le souhaitez
                     // Par exemple, extraire les titres des articles comme dans l'exemple précédent
                     data.forEach(function (article) {
@@ -41,16 +43,16 @@
                         if(article.featured_image_url == null){
                             imageURL = "https://via.placeholder.com/150";
                         }else{
-                            imageURL = article.better_featured_image.source_url;
+                            imageURL = article.featured_image_url;
                         }
 
                         contenu = contenu.split('\.', 1)[0];
 
                         let carte = document.createElement("div");
-                        carte.classList.add("restapi__carte");
+                        carte.classList.add("restapi__carte__pays");
 
                         carte.innerHTML = `
-                            <img src="${imageURL}" alt="${titre}">
+                            <img class="img_pays" src="${imageURL}" alt="${titre}">
                             <div class="info_destination">
                                 <h2>${titre}</h2>
                                 <p>${contenu}</p>
