@@ -29,20 +29,20 @@ add_action('wp_enqueue_scripts', 'ec_pays_enqueue');
 // cration des destionations associées à un pays
 function creation_destinations(){
     $contenu = '<div class="contenu__restapi__pays">
-        <button class="cat_bouton" id="France">France</button>
-        <button class="cat_bouton" id="États-Unis">États-Unis</button>
-        <button class="cat_bouton" id="Canada">Canada</button>
-        <button class="cat_bouton" id="Chili">Chili</button>
-        <button class="cat_bouton" id="Argentine">Argentine</button>
-        <button class="cat_bouton" id="Belgique">Belgique</button>
-        <button class="cat_bouton" id="Maroc">Maroc</button>
-        <button class="cat_bouton" id="Mexique">Mexique</button>
-        <button class="cat_bouton" id="Espagne">Japon</button>
-        <button class="cat_bouton" id="Italie">Italie</button>
-        <button class="cat_bouton" id="Islande">Islande</button>
-        <button class="cat_bouton" id="Chine">Chine</button>
-        <button class="cat_bouton" id="Grèce">Grèce</button>
-        <button class="cat_bouton" id="Suisse">Suisse</button>
+        <button class="cat_pays" id="France">France</button>
+        <button class="cat_pays" id="États-Unis">États-Unis</button>
+        <button class="cat_pays" id="Canada">Canada</button>
+        <button class="cat_pays" id="Chili">Chili</button>
+        <button class="cat_pays" id="Argentine">Argentine</button>
+        <button class="cat_pays" id="Belgique">Belgique</button>
+        <button class="cat_pays" id="Maroc">Maroc</button>
+        <button class="cat_pays" id="Mexique">Mexique</button>
+        <button class="cat_pays" id="Espagne">Japon</button>
+        <button class="cat_pays" id="Italie">Italie</button>
+        <button class="cat_pays" id="Islande">Islande</button>
+        <button class="cat_pays" id="Chine">Chine</button>
+        <button class="cat_pays" id="Grèce">Grèce</button>
+        <button class="cat_pays" id="Suisse">Suisse</button>
     </div>';
 }
 

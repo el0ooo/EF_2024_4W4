@@ -1,15 +1,15 @@
 (function () {
     console.log("rest API");
     // URL de l'API REST de WordPress
-    let boutons_pays = document.querySelectorAll(".pays_bouton");
-    let restapi = document.querySelector(".contenu__restapi");
+    let boutons_pays = document.querySelectorAll(".cat_pays");
+    let restapi = document.querySelector(".contenu__restapi__pays");
 
-    boutons_categorie.forEach(elm => {
+    boutons_pays.forEach(elm => {
         elm.addEventListener("click", function (e) {
-            let categorie = e.target.id.split('_')[1]; // Extract the category ID from the button ID
-            console.log("Selected category:", categorie);
+            let pays = e.target.id.split('_')[1]; // Extract the category ID from the button ID
+            console.log("Selected category:", pays);
 
-            let url = `https://gftnth00.mywhc.ca/tim35/wp-json/wp/v2/posts?categories=${categorie}`;
+            let url = `https://gftnth00.mywhc.ca/tim35/wp-json/wp/v2/posts?categories=${pays}`;
 
             // Effectuer la requête HTTP en utilisant fetch()
             fetch(url)
@@ -36,17 +36,20 @@
                         let contenu = article.content.rendered;
 						let lien = article.link;
                         let categories = article.categories;
+                        let image = article.better_featured_image.source_url;
 
                         contenu = contenu.split('\.', 1)[0];
-                        console.log(titre);
 
                         let carte = document.createElement("div");
                         carte.classList.add("restapi__carte");
                     
                         carte.innerHTML = `
-                            <h2>${titre}</h2>
-                            <p>${contenu}</p>
-							<p><a href= "${lien}">Voir la suite</a></p>
+                            <img src="${image}" alt="${titre}">
+                            <div class="info_destination">
+                                <h2>${titre}</h2>
+                                <p>${contenu}</p>
+                                <p><a href= "${lien}">Voir la suite</a></p>
+                            </div>
                         `;
                         restapi.appendChild(carte);
                     });
